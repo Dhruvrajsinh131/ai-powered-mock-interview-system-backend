@@ -1,9 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { env } from "../utils/env";
-interface CustomRequest extends Request {
-  _id?: string;
-}
+import { CustomRequest } from "../types";
 
 interface TokenData {
   id?: string;
@@ -18,7 +16,7 @@ export const auth = async (
     const { token } = req.cookies;
 
     if (!token) {
-      res.send(404).json({
+      res.status(403).json({
         success: false,
         message: "Unauthorised",
       });
@@ -32,14 +30,19 @@ export const auth = async (
 
       console.log("tokenData", tokenData);
     } catch (err) {
-      // err
+      res.status(401).json({
+        success: false,
+        message: "Unauthorized",
+      });
+      return;
     }
 
     next();
   } catch (error) {
-    res.status(500).json({
+    res.status(401).json({
       success: false,
       message: "Internal server error",
     });
+    return;
   }
 };
