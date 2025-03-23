@@ -4,14 +4,11 @@ import { checkEnv } from "./utils/env";
 import routerFactory from "./routes";
 import cookieParser from "cookie-parser";
 import { auth } from "./middlewares/auth";
+import { CustomRequest } from "./types";
 
 const app = express();
 
 const PORT: number = 8080;
-
-interface CustomRequest extends Request {
-  _id?: string;
-}
 
 app.use(express.json());
 app.use(cookieParser());
