@@ -5,6 +5,8 @@ import routerFactory from "./routes";
 import cookieParser from "cookie-parser";
 import { auth } from "./middlewares/auth";
 import { CustomRequest } from "./types";
+import cron from "node-cron";
+import { fetchAndStoreJobs } from "./services/jobs.service";
 
 const app = express();
 
@@ -22,6 +24,11 @@ app.get("/test", auth, (req: Request, res: Response) => {
 
   res.json({ ok: "ok" });
   return;
+});
+
+cron.schedule("0 0 * * *", () => {
+  console.log("Running the task at midnight...");
+  fetchAndStoreJobs();
 });
 
 connectToMongo().then(() => {
