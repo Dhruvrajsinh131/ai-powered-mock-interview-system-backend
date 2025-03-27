@@ -4,9 +4,7 @@ import openaiService from "./openai.service";
 
 export const fetchAndStoreJobs = async () => {
   try {
-    const jobsData = await axios.get(
-      "https://remotive.com/api/remote-jobs?category=software-dev&limit=5"
-    );
+    const jobsData = await axios.get(process.env.JOBS_API_URL!);
 
     const jobs = jobsData.data.jobs;
     const now = new Date();
