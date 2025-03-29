@@ -2,7 +2,7 @@ name: Deploy Ai-based-mockinterview-system-backend
 
 on:
   push:
-    branches: [main] # Change if you deploy from another branch
+    branches: [main]
 
 jobs:
   deploy:
@@ -20,8 +20,9 @@ jobs:
       - name: Deploy to EC2
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "
-            cd ~/zala-projects/ai-powered-mock-interview-system-backend &&  
-            project directory in EC2
+            source ~/.nvm/nvm.sh;
+            source ~/.bashrc;
+            cd ~/zala-projects/ai-powered-mock-interview-system-backend &&
             git pull origin main &&
             npm install &&
             npm run build &&
