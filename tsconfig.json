@@ -15,10 +15,9 @@
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
     "useUnknownInCatchVariables": true,
-    "noEmit": true,
+    "noEmit": false,
     "outDir": "./dist",
     "rootDir": "./src",
-    "esModuleInterop": true,
-    "allowImportingTsExtensions": true
-  }
+    "esModuleInterop": true
+    }
 }
