@@ -17,7 +17,7 @@ app.use(cookieParser());
 
 app.use("/api", routerFactory);
 
-app.get("/test", auth, (req: Request, res: Response) => {
+app.get("/ping", auth, (req: Request, res: Response) => {
   const customReq = req as CustomRequest;
 
   console.log("req", customReq._id);
