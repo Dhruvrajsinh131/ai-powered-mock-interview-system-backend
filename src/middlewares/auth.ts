@@ -27,8 +27,6 @@ export const auth = async (
       const tokenData = jwt.verify(token, env.JWT_SECRET) as TokenData;
 
       req._id = tokenData?.id as string;
-
-      console.log("tokenData", tokenData);
     } catch (err) {
       res.status(401).json({
         success: false,

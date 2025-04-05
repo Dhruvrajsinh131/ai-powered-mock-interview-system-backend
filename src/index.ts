@@ -20,8 +20,6 @@ app.use("/api", routerFactory);
 app.get("/ping", auth, (req: Request, res: Response) => {
   const customReq = req as CustomRequest;
 
-  console.log("req", customReq._id);
-
   res.json({ ok: "ok" });
   return;
 });

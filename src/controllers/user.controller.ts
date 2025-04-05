@@ -27,7 +27,6 @@ export const signUp = async (req: Request, res: Response): Promise<void> => {
 export const signIn = async (req: Request, res: Response): Promise<void> => {
   try {
     const { email, password } = req.body;
-    console.log("req.body", req.body);
 
     const user = await userModel.findOne({ email });
 
